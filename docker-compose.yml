@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  backend:
+    build: .
+    container_name: todo
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./core:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=django-insecure-h2c@0=bxw5c3b78cg4*9wml4y5nu9e-y04kl^n-qc!xs71lcl4
+      - DEBUG=True
