@@ -24,9 +24,9 @@ class SignUpView(FormView):
         user = form.save()
         if user is not None:
             login(self.request,user)
-            return(SignUpView, self).form_valid(form)
+        return super(SignUpView, self).form_valid(form)
     #receive single object
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('task_list')
-        return super(SignInView, self).get(*args, **kwargs)
+        return super(SignUpView, self).get(*args, **kwargs)
