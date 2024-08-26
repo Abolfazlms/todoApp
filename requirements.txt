@@ -1,8 +1,10 @@
-asgiref==3.8.1
+#general modules
 Django==3.2.25
-pytz==2024.1
-sqlparse==0.5.1
-typing_extensions==4.12.2
-djangorestframework
-markdown
 django-filter
+djangorestframework
+python-decouple
+
+#third-party modules
+django-filter
+Markdown
+drf-yasg[validation]
