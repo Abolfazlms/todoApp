@@ -5,6 +5,7 @@ djangorestframework
 python-decouple
 
 #third-party modules
+djangorestframework_simplejwt
 django-filter
 Markdown
 drf-yasg[validation]
