@@ -8,3 +8,9 @@ python-decouple
 django-filter
 Markdown
 drf-yasg[validation]
+
+# refactoring and tests
+black
+flake8
+pytest
+pytest-django
