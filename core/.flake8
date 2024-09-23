@@ -11,6 +11,9 @@ exclude =
     __init__.py,
 ignore =
     E501,
-    W291
+    W291,
+    E302,
+    W292,
+    W293, 
 
 max-line-length = 200
