@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
     "drf_yasg",
-
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +140,4 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ],
 }
+CELERY_BROKER_URL = "redis://redis:6379/1"

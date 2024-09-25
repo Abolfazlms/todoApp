@@ -1,5 +1,12 @@
 version: "3.9"
 services:
+  redis:
+    container_name: redis_todo
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
   backend:
     build: .
     container_name: todo
@@ -11,3 +18,11 @@ services:
     environment:
       - SECRET_KEY=django-insecure-h2c@0=bxw5c3b78cg4*9wml4y5nu9e-y04kl^n-qc!xs71lcl4
       - DEBUG=True
+  worker:
+    build: .
+    command: celery -A core worker -l INFO
+    depends_on:
+      - redis
+      - backend
+    volumes:
+      - ./core:/app
