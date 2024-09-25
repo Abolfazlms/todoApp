@@ -141,3 +141,15 @@ REST_FRAMEWORK = {
     ],
 }
 CELERY_BROKER_URL = "redis://redis:6379/1"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+OPENWEATHER_API_KEY = "0b7b74bd5325797220bd4b11a5eeccf6"

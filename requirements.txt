@@ -3,7 +3,8 @@ Django==3.2.25
 django-filter
 djangorestframework
 python-decouple
-
+requests
+ 
 #third-party modules
 djangorestframework_simplejwt
 django-filter
@@ -20,4 +21,5 @@ Faker
 # background process and cache
 celery
 Redis
+django-redis
 django-celery-beat
