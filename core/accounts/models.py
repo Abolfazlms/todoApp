@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 
+
 class UserManager(BaseUserManager):
     """Custom user model manager where username is the unique identifier for authentication."""
 
@@ -17,9 +18,13 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model."""
-    username = models.CharField(_("username"), max_length=150, unique=True)  # Add max_length
+
+    username = models.CharField(
+        _("username"), max_length=150, unique=True
+    )  # Add max_length
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -31,14 +36,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='accounts_user_set',  # Add related_name to avoid clash
+        "auth.Group",
+        related_name="accounts_user_set",  # Add related_name to avoid clash
         blank=True,
     )
-    
+
     user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='accounts_user_set',  # Add related_name to avoid clash
+        "auth.Permission",
+        related_name="accounts_user_set",  # Add related_name to avoid clash
         blank=True,
     )
 
