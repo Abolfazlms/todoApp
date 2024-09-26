@@ -11,6 +11,9 @@ django-filter
 Markdown
 drf-yasg[validation]
 
+# deployment modules
+gunicorn
+
 # refactoring and tests
 black
 flake8
