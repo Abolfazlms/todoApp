@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 
+
 class TaskListViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
@@ -53,14 +54,15 @@ class TaskDetailViewSet(viewsets.ModelViewSet):
             serializer.save()
         return Response(serializer.data)
 
+
 class WeatherViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
-    @method_decorator(cache_page(60 * 20)) # seconds * number
+    @method_decorator(cache_page(60 * 20))  # seconds * number
     @method_decorator(vary_on_cookie)
     def retrieve(self, request):
-        city = 'Tehran'
-        cached_data = cache.get(f'weather_data_{city}')
+        city = "Tehran"
+        cached_data = cache.get(f"weather_data_{city}")
         if cached_data:
             return Response(cached_data)
 
@@ -70,7 +72,7 @@ class WeatherViewSet(viewsets.ViewSet):
 
         if response.status_code == 200:
             data = response.json()
-            cache.set(f'weather_data_{city}', data, timeout=60 * 20)
+            cache.set(f"weather_data_{city}", data, timeout=60 * 20)
             return Response(data)
         else:
-            return Response({'error': 'Could not retrieve weather data'}, status=500)
+            return Response({"error": "Could not retrieve weather data"}, status=500)
