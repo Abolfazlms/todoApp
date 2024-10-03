@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-h2c@0=bxw5c3b78cg4*9wml4y5nu9e-y04kl^n-qc!xs71lcl4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['188.213.198.148']
+ALLOWED_HOSTS = ['188.213.198.148','app.dreampastry.ir']
 
 
 # Application definition
