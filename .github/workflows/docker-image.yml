@@ -1,4 +1,4 @@
-name: Django Project Test With Merge
+name: Django Project Test and Deploy
 on:
   push:
     branches: [ "main" ]
@@ -7,8 +7,8 @@ on:
 
 jobs:
 
-  build:
-
+  Test:
+    name : Test
     runs-on: ubuntu-latest
 
     steps:
@@ -16,5 +16,25 @@ jobs:
     - name: Setup Docker-Compose
       run: docker compose up -d
     - name: Run Tests
-      run: docker compose exec backend sh -c "flake8 && pytest ."
+      run: docker exec backend sh -c "flake8 && pytest ."
+
+  Deploy:
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    name: Deploy
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Connect and Execute Command
+      uses: appleboy/ssh-action@master
+      with:
+        username: ${{secrets.USERNAME}}
+        password: ${{secrets.PASSWORD}}
+        host: ${{secrets.HOST}}
+        port: ${{secrets.PORT}}
+        script: |
+          cd ${{secrets.PROJECT_PATH }} 
+          docker-compose -f docker-compose-stage.yml stop
+          git pull
+          docker-compose -f docker-compose-stage.yml restart
 
