@@ -1,5 +1,5 @@
 #general modules
-Django==3.2.25
+Django==4.2.24
 django-filter
 djangorestframework
 python-decouple
